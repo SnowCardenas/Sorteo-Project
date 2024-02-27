@@ -6,6 +6,7 @@ import { CiMail } from "react-icons/ci";
 import { FaInstagram } from "react-icons/fa";
 import play5 from "./assets/play5.png";
 import { Buttom } from "./components/Buttom";
+import { useState } from "react";
 
 const imgSorteo = [
   {
@@ -21,6 +22,53 @@ const imgSorteo = [
 ];
 
 function App() {
+  const [name, setName] = useState("");
+  const [lastname, setLastName] = useState("");
+  const [phone, setPhone] = useState(0);
+  const [email, setEmail] = useState("");
+  const [tickets, setTickets] = useState(0);
+  const [openModal, setOpenModal] = useState(false);
+
+  const onChangeName = (e) => {
+    setName(e.target.value);
+  };
+
+  const onChangeLastName = (e) => {
+    setLastName(e.target.value);
+  };
+
+  const onChangePhone = (e) => {
+    setPhone(e.target.value);
+  };
+
+  const onChangeEmail = (e) => {
+    setEmail(e.target.value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (tickets === 0) {
+      return console.log("necesitas comprar un ticket");
+    }
+    console.log(name);
+    console.log(email);
+    console.log(phone);
+    console.log(lastname);
+    console.log(openModal);
+    console.log(tickets);
+  };
+
+  const handleAddTickets = (monto) => {
+    const newTickets = tickets + monto;
+    setTickets(newTickets);
+  };
+  const handleResetTickets = () => {
+    setTickets(0);
+  };
+  const handleModal = () => {
+    setOpenModal(!openModal);
+  };
+
   return (
     <>
       <section id="home">
@@ -74,66 +122,87 @@ function App() {
           </p>
         </div>
         <div className="content center">
-          <form id="formulario" className="container formu">
+          {/*Formulario*/}
+          <form onSubmit={handleSubmit} id="formulario" className="container formu">
             <div className="form-group">
               <label htmlFor="nombre" className="label">
                 Nombre:
               </label>
-              <input type="text" id="nombre" name="nombre" required />
+              <input
+                onChange={onChangeName}
+                type="text"
+                id="nombre"
+                name="nombre"
+                placeholder="Ingrese su nombre..."
+                required
+              />
             </div>
             <div className="form-group">
               <label htmlFor="apellidos" className="label">
                 Apellidos:
               </label>
-              <input type="text" id="apellidos" name="apellidos" required />
+              <input
+                onChange={onChangeLastName}
+                type="text"
+                id="apellidos"
+                name="apellidos"
+                placeholder="Ingrese su apellido..."
+                required
+              />
             </div>
             <div className="form-group">
               <label htmlFor="telefono" className="label">
                 Número de Teléfono:
               </label>
-              <input type="tel" id="telefono" name="telefono" required />
+              <input
+                onChange={onChangePhone}
+                type="number"
+                id="telefono"
+                name="telefono"
+                placeholder="Ingrese N° de telefono..."
+                required
+              />
             </div>
             <div className="form-group">
               <label htmlFor="correo" className="label">
                 Correo Electrónico:
               </label>
-              <input type="email" id="correo" name="correo" required />
+              <input
+                onChange={onChangeEmail}
+                type="email"
+                id="correo"
+                name="correo"
+                placeholder="Ingrese su correo..."
+                required
+              />
             </div>
             <div className="form-group">
               <label htmlFor="numero_rifas" className="label">
                 ¿Cuántos números de la rifa quiere?
               </label>
               <div className="botones-numero">
-                <button type="button" className="boton-numero" data-valor="2">
+                <button onClick={() => handleAddTickets(2)} type="button" className="boton-numero">
                   +2
                 </button>
-                <button type="button" className="boton-numero" data-valor="5">
+                <button onClick={() => handleAddTickets(5)} type="button" className="boton-numero">
                   +5
                 </button>
-                <button type="button" className="boton-numero" data-valor="10">
+                <button onClick={() => handleAddTickets(10)} type="button" className="boton-numero">
                   +10
                 </button>
-                <button type="button" className="boton-numero" data-valor="20">
+                <button onClick={() => handleAddTickets(20)} type="button" className="boton-numero">
                   +20
                 </button>
+                <button onClick={handleResetTickets} type="button" className="boton-numero">
+                  Reset
+                </button>
               </div>
-              <input
-                type="number"
-                id="numero_rifas"
-                name="numero_rifas"
-                required
-                min="1"
-                max="100"
-                value="0"
-                placeholder="0"
-              />
+              <div className="numero_rifas">{tickets}</div>
             </div>
-            <Buttom className="boton-submit" />
-            {/* <button type="submit" className="boton">
-              Obtener
-            </button> */}
+            <Buttom handleModal={handleModal} tickets={tickets} className="boton-submit" />
           </form>
-          <div id="modal" className="modal">
+          {/*Modal*/}
+          <div id="modal" className={`${openModal ? "modal-open" : "modal-hidden"}`}>
             <div className="modal-content">
               <h2>Tus números de la rifa son:</h2>
 
@@ -141,7 +210,7 @@ function App() {
                 <ul id="numeros"></ul>
               </main>
               <footer>
-                <button type="button" className="boton" id="cerrar-modal">
+                <button onClick={handleModal} type="button" className="boton" id="cerrar-modal">
                   Cerrar
                 </button>
               </footer>

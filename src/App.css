@@ -279,6 +279,7 @@ input {
   cursor: pointer;
   transition: 0.5s;
 }
+
 /* .boton-submit {
   position: relative;
   overflow: hidden;
@@ -313,10 +314,30 @@ input {
   margin-right: 15px;
 }
 
+.numero_rifas {
+  border: 1px solid #ccc;
+  padding: 8px;
+  border-radius: 4px;
+  display: inline-block;
+  min-width: 150px;
+  background-color: white;
+  color: #222;
+}
+
 /* Modal */
 
-.modal {
+.modal-hidden {
   display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 100;
+}
+.modal-open {
+  display: flex;
   position: fixed;
   top: 0;
   left: 0;
