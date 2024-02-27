@@ -12,6 +12,6 @@ export const Buttom = (props) => {
 };
 
 Buttom.propTypes = {
-  tickets: PropTypes.func.isRequired, // Validación para handleModal
+  tickets: PropTypes.number.isRequired, // Validación para handleModal
   handleModal: PropTypes.func.isRequired, // Validación para handleModal
 };

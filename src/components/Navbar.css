@@ -1,4 +1,4 @@
-header {
+.navbar-desktop {
   position: fixed;
   top: 0;
   left: 0;
@@ -11,38 +11,123 @@ header {
   backdrop-filter: blur(20px);
 }
 
-header .logo {
+.navbar-desktop .logo {
   position: relative;
   color: #fff;
   text-decoration: none;
   font-weight: 700;
   font-size: 2em;
 }
-header .tree {
+.navbar-desktop .tree {
   color: #e70009;
 }
-header ul {
+.navbar-desktop ul {
   position: relative;
   display: flex;
   gap: 40px;
 }
 
-header li {
+.navbar-desktop li {
   list-style: none;
 }
 
-header ul li a {
+.navbar-desktop ul li a {
   text-decoration: none;
   color: #fff;
   font-weight: 500;
   font-size: 1.25em;
 }
 
-header ul li.active a,
-header ul li:hover a {
+.navbar-desktop ul li.active a,
+.navbar-desktop ul li:hover a {
   color: #e70009;
 }
-header ul li a:hover {
+.navbar-desktop ul li a:hover {
   transition: 0.5s;
   letter-spacing: 1px;
+}
+.navbar-mobile {
+  visibility: hidden;
+}
+.navbar-sidebar {
+  visibility: hidden;
+}
+.icon-navbar-mobile {
+  cursor: pointer;
+}
+
+@media (max-width: 700px) {
+  .navbar-desktop {
+    visibility: hidden;
+  }
+  .navbar-mobile {
+    visibility: visible;
+    margin: auto;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 48px;
+    z-index: 10000;
+    background-color: #2e2f34;
+  }
+  .navbar-mobile .logo {
+    position: relative;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 2em;
+  }
+  .navbar-mobile .tree {
+    color: #e70009;
+  }
+  .navbar-sidebar {
+    visibility: visible;
+    position: absolute;
+    top: -300px;
+    width: 100%;
+    height: 290px;
+    background-color: #2e2f34;
+    z-index: 1000;
+    transition: top 0.5s ease;
+  }
+  .icon-navbar-close {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    cursor: pointer;
+  }
+  .navbar-sidebar.open {
+    top: 0; /* Muestra la barra lateral */
+  }
+  .navbar-sidebar ul {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 50px;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .navbar-sidebar li {
+    list-style: none;
+    cursor: pointer;
+  }
+
+  .navbar-sidebar ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: 500;
+    font-size: 1.25em;
+  }
+
+  .navbar-sidebar ul li.active a,
+  .navbar-sidebarul li:hover a {
+    color: #e70009;
+  }
+  .navbar-sidebar ul li a:hover {
+    transition: 0.5s;
+    letter-spacing: 1px;
+  }
 }
