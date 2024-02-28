@@ -1,5 +1,6 @@
 import "./Home.css";
 import ethereum from "../assets/ethereum.jpg";
+import AvatarFoto from "../assets/AvatarFoto.png";
 import { FaWhatsapp } from "react-icons/fa";
 import { PiTelegramLogo } from "react-icons/pi";
 import { CiMail } from "react-icons/ci";
@@ -87,7 +88,7 @@ function Home() {
             Contact Us
           </a>
         </div>
-        <img src={ethereum} className="eth" alt="Ethereum" />
+        <img src={AvatarFoto} className="eth" alt="Ethereum" />
       </section>
       <section id="services">
         <div className="secText">
