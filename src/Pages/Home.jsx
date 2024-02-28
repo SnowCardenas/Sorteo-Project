@@ -7,6 +7,7 @@ import { FaInstagram } from "react-icons/fa";
 import play5 from "../assets/play5.png";
 import { Buttom } from "../components/Buttom";
 import { useState } from "react";
+import { Navbar } from "../components/Navbar";
 
 const imgSorteo = [
   {
@@ -71,6 +72,7 @@ function Home() {
 
   return (
     <>
+      <Navbar />
       <section id="home">
         <div className="content">
           <h2>

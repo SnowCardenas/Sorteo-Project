@@ -47,10 +47,10 @@
   letter-spacing: 1px;
 }
 .navbar-mobile {
-  visibility: hidden;
+  display: none;
 }
 .navbar-sidebar {
-  visibility: hidden;
+  display: none;
 }
 .icon-navbar-mobile {
   cursor: pointer;
@@ -82,6 +82,7 @@
     color: #e70009;
   }
   .navbar-sidebar {
+    display: inline-block;
     visibility: visible;
     position: absolute;
     top: -300px;
