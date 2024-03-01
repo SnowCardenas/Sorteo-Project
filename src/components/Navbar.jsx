@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./Navbar.css";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { IoMdClose } from "react-icons/io";
+import { Link } from "react-router-dom";
 
 export const Navbar = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -27,6 +28,11 @@ export const Navbar = () => {
           <li>
             <a href="#contact-us">Contacto</a>
           </li>
+          <li>
+            <Link className="nav-signIn" to="/signIn">
+              SignIn
+            </Link>
+          </li>
         </ul>
       </div>
       <header className="navbar-desktop">
@@ -46,6 +52,11 @@ export const Navbar = () => {
           </li>
           <li>
             <a href="#contact-us">Contacto</a>
+          </li>
+          <li>
+            <Link className="nav-signIn" to="/signIn">
+              SignIn
+            </Link>
           </li>
         </ul>
       </header>
