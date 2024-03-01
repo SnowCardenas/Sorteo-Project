@@ -1,5 +1,4 @@
 import "./Home.css";
-import ethereum from "../assets/ethereum.jpg";
 import AvatarFoto from "../assets/AvatarFoto.png";
 import { FaWhatsapp } from "react-icons/fa";
 import { PiTelegramLogo } from "react-icons/pi";
