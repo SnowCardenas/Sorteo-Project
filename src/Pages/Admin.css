@@ -53,7 +53,7 @@
   cursor: pointer;
 }
 .header-icons-admin .account {
-  width: 130px;
+  width: 187px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -84,12 +84,15 @@
   margin: 1rem 3rem;
   font-size: 12px;
 }
-.side_navbar-admin a {
+.side_navbar-admin button {
   width: 100%;
   padding: 0.8rem 3rem;
   font-weight: 500;
   font-size: 15px;
   color: white;
+  background-color: #e70009;
+  border: none;
+  cursor: pointer;
 }
 .links-admin {
   margin-top: 5rem;
@@ -99,8 +102,8 @@
 .links-admin a {
   font-size: 13px;
 }
-.side_navbar-admin a:hover {
-  background: rgb(235, 235, 235);
+.side_navbar-admin button:hover {
+  background-color: #34353a;
 }
 .side_navbar-admin .active {
   border-left: 2px solid rgb(100, 100, 100);

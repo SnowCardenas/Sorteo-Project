@@ -3,6 +3,10 @@ import "./App.css";
 import Home from "./Pages/Home";
 import Admin from "./Pages/Admin";
 import SignIn from "./Pages/SignIn";
+import axios from "axios";
+
+axios.defaults.baseURL = "http://localhost:3001/api";
+axios.defaults.withCredentials = true;
 
 function App() {
   return (

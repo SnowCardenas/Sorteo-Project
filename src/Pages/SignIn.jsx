@@ -1,7 +1,12 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import "./SignIn.css";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { UserContext } from "../context/userContext";
 
 export default function SignIn() {
+  const { setUser } = useContext(UserContext);
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -13,11 +18,22 @@ export default function SignIn() {
     setPassword(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    try {
+      const response = await axios.post("/user/signIn", { email, password });
 
-    console.log(email);
-    console.log(password);
+      if (response.error) {
+        console.log(response.error);
+      } else {
+        setEmail("");
+        setPassword("");
+        setUser(response.data);
+        navigate("/admin");
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -27,11 +43,11 @@ export default function SignIn() {
           <h2>Login</h2>
           <div className="inputBx-login">
             <span></span>
-            <input onChange={onChangeEmail} type="text" placeholder="Usuario" />
+            <input onChange={onChangeEmail} type="text" placeholder="Usuario" value={email} />
           </div>
           <div className="inputBx-login">
             <span></span>
-            <input onChange={onChangePassword} type="password" placeholder="Contraseña" />
+            <input onChange={onChangePassword} type="password" placeholder="Contraseña" value={password} />
           </div>
           <div className="inputBx-login">
             <input className="submit-login" type="submit" value="Iniciar Sesion" />
