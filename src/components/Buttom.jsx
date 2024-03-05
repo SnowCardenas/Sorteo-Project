@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 export const Buttom = (props) => {
   const { handleModal, tickets } = props;
-  console.log(tickets, "tickets");
+
   return (
     <button onClick={handleModal} className="buttom-submit" disabled={tickets === 0}>
       Obtener

@@ -8,13 +8,9 @@ import play5 from "../assets/play5.png";
 import { Buttom } from "../components/Buttom";
 import { useState } from "react";
 import { Navbar } from "../components/Navbar";
+import axios from "axios";
 
 const imgSorteo = [
-  {
-    imagen: { play5 },
-    title: "Playstation 5",
-    alt: "Imagen play 5",
-  },
   {
     imagen: { play5 },
     title: "Playstation 5",
@@ -24,19 +20,20 @@ const imgSorteo = [
 
 function Home() {
   const [name, setName] = useState("");
-  const [lastname, setLastName] = useState("");
+  //const [lastname, setLastName] = useState("");
   const [phone, setPhone] = useState(0);
   const [email, setEmail] = useState("");
   const [tickets, setTickets] = useState(0);
   const [openModal, setOpenModal] = useState(false);
+  const [data, setData] = useState("");
 
   const onChangeName = (e) => {
     setName(e.target.value);
   };
 
-  const onChangeLastName = (e) => {
+  /* const onChangeLastName = (e) => {
     setLastName(e.target.value);
-  };
+  }; */
 
   const onChangePhone = (e) => {
     setPhone(e.target.value);
@@ -46,17 +43,22 @@ function Home() {
     setEmail(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (tickets === 0) {
       return console.log("necesitas comprar un ticket");
     }
-    console.log(name);
-    console.log(email);
-    console.log(phone);
-    console.log(lastname);
-    console.log(openModal);
-    console.log(tickets);
+    try {
+      const response = await axios.post("/ticket/buyTickets", {
+        buyerName: name,
+        buyerEmail: email,
+        buyerPhone: phone,
+        quantity: tickets,
+      });
+      setData(response.data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleAddTickets = (monto) => {
@@ -68,6 +70,7 @@ function Home() {
   };
   const handleModal = () => {
     setOpenModal(!openModal);
+    setData("");
   };
 
   return (
@@ -139,7 +142,7 @@ function Home() {
                 required
               />
             </div>
-            <div className="form-group">
+            {/*   <div className="form-group">
               <label htmlFor="apellidos" className="label">
                 Apellidos:
               </label>
@@ -151,7 +154,7 @@ function Home() {
                 placeholder="Ingrese su apellido..."
                 required
               />
-            </div>
+            </div> */}
             <div className="form-group">
               <label htmlFor="telefono" className="label">
                 Número de Teléfono:
@@ -207,7 +210,8 @@ function Home() {
           <div id="modal" className={`${openModal ? "modal-open" : "modal-hidden"}`}>
             <div className="modal-content">
               <h2>Tus números de la rifa son:</h2>
-
+              <p> {data.split(".")[0]}</p>
+              <p> {data.split(".")[1]}</p>
               <main>
                 <ul id="numeros"></ul>
               </main>

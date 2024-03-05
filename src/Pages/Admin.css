@@ -81,7 +81,7 @@
 }
 .side_navbar-admin span {
   color: white;
-  margin: 1rem 3rem;
+  margin: 1rem 4rem;
   font-size: 12px;
 }
 .side_navbar-admin button {
@@ -94,6 +94,9 @@
   border: none;
   cursor: pointer;
 }
+.side_navbar-admin button:hover {
+  background-color: #34353a;
+}
 .links-admin {
   margin-top: 5rem;
   display: flex;
@@ -102,12 +105,21 @@
 .links-admin a {
   font-size: 13px;
 }
-.side_navbar-admin button:hover {
+.active-Link {
+  text-decoration: none;
+  width: 100%;
+  padding: 0.8rem 5rem;
+  font-weight: 500;
+  font-size: 15px;
+  color: white;
+  background-color: #e70009;
+  border: none;
+  cursor: pointer;
+}
+.active-Link:hover {
   background-color: #34353a;
 }
-.side_navbar-admin .active {
-  border-left: 2px solid rgb(100, 100, 100);
-}
+
 /* Main Body Section */
 .main-body-admin {
   width: 90%;

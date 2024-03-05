@@ -8,22 +8,30 @@ import Avatar from "../assets/avatar.jpg";
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../context/userContext";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { Page404 } from "../components/Page404";
 
 export default function Admin() {
   const navigate = useNavigate();
   const { user } = useContext(UserContext);
   const [tickets, setTickets] = useState({});
+  const [updateTrigger, setUpdateTrigger] = useState(false);
+  const [search, setSearch] = useState("");
+  const [searchResult, setSearchResult] = useState({});
+
+  const onSearchChange = (e) => {
+    setSearch(e.target.value);
+  };
 
   useEffect(() => {
     axios.get("/ticket/allTickets").then((response) => setTickets(response.data));
-  }, [tickets]);
+  }, [updateTrigger]);
 
   const createTickets = async () => {
     try {
       const response = await axios.post("/ticket/createTickets");
       alert("Creados exitosamente");
-      setTickets(response.data);
+      setUpdateTrigger(!updateTrigger);
     } catch (error) {
       console.log(error.response.data);
       alert(error.response.data);
@@ -34,9 +42,21 @@ export default function Admin() {
     try {
       const response = await axios.delete("/ticket/deleteAllTickets");
       alert(response.data);
+      setUpdateTrigger(!updateTrigger);
+      setSearchResult({});
     } catch (error) {
       console.log(error.response.data);
       alert(error.response.data);
+    }
+  };
+
+  const handleSearch = async () => {
+    try {
+      const response = await axios.get(`/ticket/search/${search}`);
+      setSearchResult(response.data);
+    } catch (error) {
+      console.log(error);
+      alert("Error al buscar el ticket");
     }
   };
 
@@ -49,7 +69,7 @@ export default function Admin() {
     }
   };
 
-  const renderDontUser = () => <h1>Loading......</h1>;
+  const renderDontUser = () => <Page404 />;
   const renderUser = () => (
     <>
       <header className="header-admin">
@@ -58,8 +78,8 @@ export default function Admin() {
             Rifas <span className="tree">Oscar</span>
           </a>
           <div className="search_box-admin">
-            <input type="text" placeholder="Search EasyPay" />
-            <FaSearch className="icon-search-admin" size={30} />
+            <input onChange={onSearchChange} type="text" placeholder="Search Ticket" />
+            <FaSearch onClick={handleSearch} className="icon-search-admin" size={30} />
           </div>
         </div>
         <div className="header-icons-admin">
@@ -74,12 +94,9 @@ export default function Admin() {
         <nav className="navbar-admin">
           <div className="side_navbar-admin">
             <span>Main Menu</span>
-            <button href="#" className="active">
+            <Link to="/" className="active-Link">
               Home
-            </button>
-            {/* <a href="#">Customers</a>
-            <a href="#">Messages</a>
-            <a href="#">Help</a> */}
+            </Link>
             <button onClick={createTickets}>Crear Tickets</button>
             <button onClick={deleteTickets}>Borrar Tickets</button>
             <button onClick={logOut}>Sign Out</button>
@@ -89,9 +106,15 @@ export default function Admin() {
           <h2>Dashboard</h2>
           <div className="promo_card-admin">
             <div className="card-admin">
-              <h3>1042</h3>
-              <p>Daily Views</p>
-              <FaRegEye className="icon-admin-card" size={30} />
+              {searchResult && (
+                <div key={searchResult._id}>
+                  <h3>{searchResult.ticketNumber}</h3>
+                  <h3>{searchResult.buyerEmail}</h3>
+                  <h3>{searchResult.buyerPhone}</h3>
+                  <p>Ticket buscado</p>
+                  <FaRegEye className="icon-admin-card" size={30} />
+                </div>
+              )}
             </div>
             <div className="card-admin">
               <h3>{tickets && tickets.ticketSold}</h3>
@@ -103,11 +126,6 @@ export default function Admin() {
               <p>Stock</p>
               <IoTicketOutline className="icon-admin-card" size={30} />
             </div>
-            {/* <div className="card-admin">
-              <h3>$6000</h3>
-              <p>Earnings</p>
-              <CiBitcoin className="icon-admin-card" size={30} />
-            </div> */}
           </div>
           <div className="history_lists-admin">
             <div className="list1">
@@ -125,16 +143,19 @@ export default function Admin() {
                 </thead>
                 <tbody>
                   {tickets.soldTickets &&
-                    tickets.soldTickets.slice(0, 20).map((ticket, index) => {
-                      return (
-                        <tr key={ticket._id}>
-                          <td>{index + 1}</td>
-                          <td>{ticket.buyerName}</td>
-                          <td>{ticket.buyerEmail}</td>
-                          <td>{ticket.buyerPhone}</td>
-                        </tr>
-                      );
-                    })}
+                    tickets.soldTickets
+                      .filter((ticket) => ticket.buyerEmail)
+                      .slice(0, 20)
+                      .map((ticket, index) => {
+                        return (
+                          <tr key={ticket._id}>
+                            <td>{index + 1}</td>
+                            <td>{ticket.buyerName}</td>
+                            <td>{ticket.buyerEmail}</td>
+                            <td>{ticket.buyerPhone}</td>
+                          </tr>
+                        );
+                      })}
                 </tbody>
               </table>
             </div>
@@ -152,15 +173,18 @@ export default function Admin() {
                 </thead>
                 <tbody>
                   {tickets.soldTickets &&
-                    tickets.soldTickets.slice(0, 20).map((ticket, index) => {
-                      return (
-                        <tr key={ticket._id}>
-                          <td>{index + 1}</td>
-                          <td>{ticket.buyerName}</td>
-                          <td>{ticket.ticketNumber}</td>
-                        </tr>
-                      );
-                    })}
+                    tickets.soldTickets
+                      .filter((ticket) => ticket.buyerEmail)
+                      .slice(0, 20)
+                      .map((ticket, index) => {
+                        return (
+                          <tr key={ticket._id}>
+                            <td>{index + 1}</td>
+                            <td>{ticket.buyerName}</td>
+                            <td>{ticket.ticketNumber}</td>
+                          </tr>
+                        );
+                      })}
                 </tbody>
               </table>
             </div>
