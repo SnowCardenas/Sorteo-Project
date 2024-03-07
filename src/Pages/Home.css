@@ -14,7 +14,7 @@
   bottom: 0;
   right: 0;
   width: 50vw;
-  height: 35vw;
+  height: 25vw;
   background: #e70009;
   border-top-right-radius: 25vw;
   border-top-left-radius: 25vw;
@@ -343,6 +343,7 @@ input {
   width: 500px;
   border-radius: 10px;
   display: flex;
+  text-align: center;
   flex-direction: column;
   gap: 48px;
 }
@@ -386,6 +387,51 @@ input {
   border-radius: 5px;
   cursor: pointer;
 }
+.ticket-container {
+  margin-top: 20px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ticket-number {
+  color: #e70009;
+  text-align: center;
+  font-size: 30px !important;
+  font-weight: bold;
+  z-index: 10;
+}
+
+.ticket-img {
+  position: absolute;
+  width: 40%;
+}
+@media (max-width: 768px) {
+  .ticket-container {
+      flex-direction: column; /* Cambiar la dirección del contenedor en dispositivos móviles */
+  }
+
+  .ticket-img {
+      width: 80%; /* Ajustar el ancho de la imagen en dispositivos móviles */
+      margin-bottom: 20px !important; /* Agregar un margen inferior para separar la imagen del número */
+  }
+
+  .ticket-number {
+      font-size: 24px !important; /* Reducir el tamaño del número en dispositivos móviles */
+  }
+}
+
+@media (max-width: 480px) {
+  .ticket-img {
+      width: 100%; /* Hacer que la imagen ocupe todo el ancho disponible en dispositivos móviles pequeños */
+  }
+
+  .ticket-number {
+      font-size: 18px !important; /* Reducir aún más el tamaño del número en dispositivos móviles pequeños */
+  }
+}
+
 
 /*CONTACTO*/
 #contact-us .content {

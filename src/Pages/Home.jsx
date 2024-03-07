@@ -4,7 +4,8 @@ import { FaWhatsapp } from "react-icons/fa";
 import { PiTelegramLogo } from "react-icons/pi";
 import { CiMail } from "react-icons/ci";
 import { FaInstagram } from "react-icons/fa";
-import play5 from "../assets/play5.png";
+import cienmil from "../assets/100mil.png";
+import Ticket from "../assets/Ticket.png"
 import { Buttom } from "../components/Buttom";
 import { useState } from "react";
 import { Navbar } from "../components/Navbar";
@@ -12,9 +13,17 @@ import axios from "axios";
 
 const imgSorteo = [
   {
-    imagen: { play5 },
-    title: "Playstation 5",
-    alt: "Imagen play 5",
+    imagen: { cienmil },
+    title: "100mil Pesos",
+    alt: "Imagen 100mil pesos Colombianos",
+  },
+];
+
+const imgTicket = [
+  {
+    imagen: { Ticket },
+    title: "Ticket",
+    alt: "Imagen Ticket",
   },
 ];
 
@@ -82,12 +91,10 @@ function Home() {
             Oscar <span>Herrera</span>
           </h2>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum natus reiciendis obcaecati ullam dicta
-            voluptatibus maiores cupiditate sequi tempora repellendus, porro laboriosam blanditiis. Minima quod
-            consequuntur molestias delectus corrupti maiores.
+          ¡Bienvenidos a la plataforma de sorteos de Oscar Herrera!  Sumérgete en la emoción de los premios y sorpresas. Descubre una experiencia única de sorteos confiables y seguros. Únete a nuestra comunidad y comienza a ganar fabulosos premios hoy mismo.
           </p>
-          <a href="#" className="btn">
-            Contact Us
+          <a href="#contact-us" className="buttom-submit">
+            Contacto
           </a>
         </div>
         <img src={AvatarFoto} className="eth" alt="Ethereum" />
@@ -98,21 +105,19 @@ function Home() {
             <span>Nuestros</span> Sorteos
           </h2>
           <p>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perspiciatis ducimus iste totam hic illo animi
-            minus, molestias vero, numquam veniam iure architecto possimus iusto, repudiandae sit? Porro nisi optio
-            quam.
+          ¡Participa en nuestro primer sorteo inaugural y gana cien mil pesos colombianos! 🎉🤑 ¡Es tu oportunidad de ganar un gran premio mientras celebramos juntos este emocionante comienzo! No te pierdas esta oportunidad única. ¡Únete ahora y sé parte de la diversión! 💰🎁 #SorteoInaugural #GranPremio #GanaConNosotros"
           </p>
         </div>
         <div className="content">
           {imgSorteo.map((imagen, index) => (
             <div key={index} className="servicesBx">
-              <img src={imagen.imagen.play5} alt={imagen.alt} />
+              <img src={imagen.imagen.cienmil} alt={imagen.alt} />
               <h3>{imagen.title}</h3>
             </div>
           ))}
         </div>
         <div className="center">
-          <a href="#" className="btn">
+          <a href="#tickets" className="buttom-submit">
             Comprar
           </a>
         </div>
@@ -121,9 +126,7 @@ function Home() {
         <div className="secText">
           <h2>Sorteo</h2>
           <p>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perspiciatis ducimus iste totam hic illo animi
-            minus, molestias vero, numquam veniam iure architecto possimus iusto, repudiandae sit? Porro nisi optio
-            quam.
+          ¡Obtén tus boletos para el sorteo llenando el siguiente formulario! Selecciona la cantidad de boletos que deseas, luego haz clic en "Obtener" para recibir tus números de boleto. Puedes anotarlos para tenerlos a mano ¡o simplemente espera a que lleguen a tu correo electrónico! ¡Participa ahora y aumenta tus posibilidades de ganar! 🎟️🎉
           </p>
         </div>
         <div className="content center">
@@ -131,14 +134,14 @@ function Home() {
           <form onSubmit={handleSubmit} id="formulario" className="container formu">
             <div className="form-group">
               <label htmlFor="nombre" className="label">
-                Nombre:
+                Nombre Completo:
               </label>
               <input
                 onChange={onChangeName}
                 type="text"
                 id="nombre"
                 name="nombre"
-                placeholder="Ingrese su nombre..."
+                placeholder="Ingrese su Nombre y Apellido..."
                 required
               />
             </div>
@@ -186,16 +189,19 @@ function Home() {
                 ¿Cuántos números de la rifa quiere?
               </label>
               <div className="botones-numero">
-                <button onClick={() => handleAddTickets(2)} type="button" className="boton-numero">
+                <button onClick={() => handleAddTickets(1)} type="button" className="boton-numero">
+                  +1
+                </button>
+                <button onClick={() => handleAddTickets(0)} type="button" className="boton-numero">
                   +2
                 </button>
-                <button onClick={() => handleAddTickets(5)} type="button" className="boton-numero">
+                <button onClick={() => handleAddTickets(0)} type="button" className="boton-numero">
                   +5
                 </button>
-                <button onClick={() => handleAddTickets(10)} type="button" className="boton-numero">
+                <button onClick={() => handleAddTickets(0)} type="button" className="boton-numero">
                   +10
                 </button>
-                <button onClick={() => handleAddTickets(20)} type="button" className="boton-numero">
+                <button onClick={() => handleAddTickets(0)} type="button" className="boton-numero">
                   +20
                 </button>
                 <button onClick={handleResetTickets} type="button" className="boton-numero">
@@ -210,8 +216,13 @@ function Home() {
           <div id="modal" className={`${openModal ? "modal-open" : "modal-hidden"}`}>
             <div className="modal-content">
               <h2>Tus números de la rifa son:</h2>
-              <p> {data.split(".")[0]}</p>
-              <p> {data.split(".")[1]}</p>
+              <div className="ticket-container">
+                  <p className="ticket-number"> {data.split(".")[0]}</p>
+                    {imgTicket.map((imagen, index) => (
+                    <img key={index} src={imagen.imagen.Ticket} alt={imagen.alt} className="ticket-img"/>
+                    ))}
+                  <p> {data.split(".")[1]}</p>
+              </div>
               <main>
                 <ul id="numeros"></ul>
               </main>
@@ -227,21 +238,19 @@ function Home() {
 
       <section id="contact-us">
         <div className="secText">
-          <h2>Contact Us</h2>
+          <h2>Contacto</h2>
           <p>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perspiciatis ducimus iste totam hic illo animi
-            minus, molestias vero, numquam veniam iure architecto possimus iusto, repudiandae sit? Porro nisi optio
-            quam.
+          ¡Conéctate con nosotros a través de nuestras redes sociales! Visita los siguientes enlaces para acceder a nuestras plataformas. ¡Te esperamos en nuestras redes para estar siempre en contacto! 🌐✉️
           </p>
         </div>
         <div className="content">
           <a href="#">
-            <CiMail className="ion-icon" size={40} /> example@mail.name
+            <CiMail className="ion-icon" size={40} /> Correo
           </a>
-          <a href="#">
-            <FaInstagram className="ion-icon" size={40} /> +123 456 789 000
+          <a href="https://www.instagram.com/oscarherrera491/" target="_blank">
+            <FaInstagram className="ion-icon" size={40} /> Instagram
           </a>
-          <a href="#">
+          <a href="https://t.me/Oscarherrerar" target="_blank">
             <PiTelegramLogo className="ion-icon" size={40} />
             Telegram
           </a>
@@ -251,7 +260,7 @@ function Home() {
         </div>
         <div className="center">
           <p className="copyrights">
-            Copyright © 2023 <a href="#">SnowDev</a>. All Right Reserved.
+            Copyright © 2024 <a href="https://twitter.com/SnowCardenas" target="_blank">SnowDev</a>. All Right Reserved.
           </p>
         </div>
       </section>
