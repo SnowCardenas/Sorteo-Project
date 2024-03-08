@@ -1,4 +1,4 @@
-import "./Admin.css";
+import "./Dashboard.css";
 import { FaSearch } from "react-icons/fa";
 import { FaBell } from "react-icons/fa";
 import { FaRegEye } from "react-icons/fa6";
@@ -24,7 +24,9 @@ export default function Admin() {
   };
 
   useEffect(() => {
-    axios.get("/ticket/allTickets").then((response) => setTickets(response.data));
+    axios
+      .get("/ticket/allTickets")
+      .then((response) => setTickets(response.data));
   }, [updateTrigger]);
 
   const createTickets = async () => {
@@ -70,43 +72,78 @@ export default function Admin() {
   };
 
   const renderDontUser = () => <Page404 />;
-  const renderUser = () => (
-    <>
-      <header className="header-admin">
-        <div className="logo-admin">
-          <a href="#" className="logo">
-            Rifas <span className="tree">Oscar</span>
-          </a>
-          <div className="search_box-admin">
-            <input onChange={onSearchChange} type="text" placeholder="Search Ticket" />
-            <FaSearch onClick={handleSearch} className="icon-search-admin" size={30} />
-          </div>
+  const renderUser = () => <>
+    <div className="container">
+    <div class="navigation">
+            <ul>
+                <li>
+                    <a href="#">
+                        <span class="icon">
+                            <ion-icon name="ticket-outline"></ion-icon>
+                        </span>
+                        <span class="title title-1">Rifas <span class="title-2">Oscar</span></span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        <span class="icon">
+                            <ion-icon name="home-outline"></ion-icon>
+                        </span>
+                        <span class="title">Dashboard</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        <span class="icon">
+                            <ion-icon name="settings-outline"></ion-icon>
+                        </span>
+                        <span class="title">Generar Tickets</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        <span class="icon">
+                            <ion-icon name="settings-outline"></ion-icon>
+                        </span>
+                        <span class="title">Borrar Tickets</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        <span class="icon">
+                            <ion-icon name="log-out-outline"></ion-icon>
+                        </span>
+                        <span class="title">Salir</span>
+                    </a>
+                </li>
+            </ul>
         </div>
-        <div className="header-icons-admin">
-          <FaBell className="icon-bell-admin" />
-          <div className="account">
-            <img src={Avatar} alt="Imagen Avatar" />
-            <h4>{user.email}</h4>
-          </div>
-        </div>
-      </header>
-      <div className="container-admin">
-        <nav className="navbar-admin">
-          <div className="side_navbar-admin">
-            <span>Main Menu</span>
-            <Link to="/" className="active-Link">
-              Home
-            </Link>
-            <button onClick={createTickets}>Crear Tickets</button>
-            <button onClick={deleteTickets}>Borrar Tickets</button>
-            <button onClick={logOut}>Sign Out</button>
-          </div>
-        </nav>
-        <div className="main-body-admin">
-          <h2>Dashboard</h2>
-          <div className="promo_card-admin">
-            <div className="card-admin">
-              {searchResult && (
+        <div class="main">
+            <div class="topbar">
+                <div class="toggle">
+                    <ion-icon name="menu-outline"></ion-icon>
+                </div>
+
+                <div class="search">
+                    <label>
+                        <input onChange={onSearchChange} type="text" placeholder="Search Ticket" />
+                        <FaSearch onClick={handleSearch} className="icon-search-admin" size={30} />
+                    </label>
+                </div>
+
+                <div class="user">
+                    <img src="./assets/AvatarFoto.png" alt=""/>
+                </div>
+            </div>
+
+            <div class="cardBox">
+                <div class="card">
+                    <div>
+                    {searchResult && (
                 <div key={searchResult._id}>
                   <h3>{searchResult.ticketNumber}</h3>
                   <h3>{searchResult.buyerName}</h3>
@@ -116,25 +153,36 @@ export default function Admin() {
                   <FaRegEye className="icon-admin-card" size={30} />
                 </div>
               )}
+                    </div>
+
+                    
+                </div>
+
+                <div class="card">
+                    <div>
+                        <div class="numbers">80</div>
+                        <div class="cardName">Sales</div>
+                    </div>
+                 <FaShoppingCart className="icon-admin-card" size={30} />
+                </div>
+
+                <div class="card">
+                    <div>
+                        <div class="numbers">920</div>
+                        <div class="cardName">Stock</div>
+                    </div>
+                    <IoTicketOutline className="icon-admin-card" size={30} />
+                </div>
             </div>
-            <div className="card-admin">
-              <h3>{tickets && tickets.ticketSold}</h3>
-              <p>Sales</p>
-              <FaShoppingCart className="icon-admin-card" size={30} />
-            </div>
-            <div className="card-admin">
-              <h3>{tickets && tickets.stock}</h3>
-              <p>Stock</p>
-              <IoTicketOutline className="icon-admin-card" size={30} />
-            </div>
-          </div>
-          <div className="history_lists-admin">
-            <div className="list1">
-              <div className="row-admin">
-                <h4>History</h4>
-              </div>
-              <table className="table-admin">
-                <thead>
+
+            <div class="details">
+                <div class="recentOrders">
+                    <div class="cardHeader">
+                        <h2>Recent Orders</h2>
+                    </div>
+
+                    <table>
+                    <thead>
                   <tr>
                     <th>#</th>
                     <th>Name</th>
@@ -158,13 +206,15 @@ export default function Admin() {
                         );
                       })}
                 </tbody>
-              </table>
-            </div>
-            <div className="list2">
-              <div className="row-admin">
-                <h4>Documnets</h4>
-              </div>
-              <table className="table-admin">
+                    </table>
+                </div>
+
+                <div class="recentCustomers">
+                    <div class="cardHeader">
+                        <h2>Recent Customers</h2>
+                    </div>
+
+                    <table className="table-admin">
                 <thead>
                   <tr>
                     <th>#</th>
@@ -188,11 +238,12 @@ export default function Admin() {
                       })}
                 </tbody>
               </table>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
-    </>
+    </div>
+  </>;
+  return (
+    <div className="admin-body">{user ? renderUser() : renderDontUser()}</div>
   );
-  return <div className="admin-body">{user ? renderUser() : renderDontUser()}</div>;
 }
