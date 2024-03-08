@@ -71,6 +71,14 @@ export default function Admin() {
     }
   };
 
+  const activeMenu = ()=>{
+    let toggle = document.querySelector(".toggle")
+    let navigation = document.querySelector(".navigation");
+    let main = document.querySelector(".main");
+    navigation.classList.toggle("active");
+    main.classList.toggle("active");
+  }
+
   const renderDontUser = () => <Page404 />;
   const renderUser = () => <>
     <div className="container">
@@ -124,7 +132,7 @@ export default function Admin() {
         </div>
         <div class="main">
             <div class="topbar">
-                <div class="toggle">
+                <div class="toggle" onClick={activeMenu}>
                     <ion-icon name="menu-outline"></ion-icon>
                 </div>
 
