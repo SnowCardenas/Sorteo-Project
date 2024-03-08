@@ -64,7 +64,12 @@ function Home() {
         buyerPhone: phone,
         quantity: tickets,
       });
-      setData(response.data);
+
+      if(response.status == 200){
+        setOpenModal(!openModal);
+        setData(response.data);
+      }
+      
     } catch (error) {
       console.log(error);
     }
@@ -192,16 +197,16 @@ function Home() {
                 <button onClick={() => handleAddTickets(1)} type="button" className="boton-numero">
                   +1
                 </button>
-                <button onClick={() => handleAddTickets(0)} type="button" className="boton-numero">
+                <button onClick={() => handleAddTickets(2)} type="button" className="boton-numero">
                   +2
                 </button>
-                <button onClick={() => handleAddTickets(0)} type="button" className="boton-numero">
+                <button onClick={() => handleAddTickets(5)} type="button" className="boton-numero">
                   +5
                 </button>
-                <button onClick={() => handleAddTickets(0)} type="button" className="boton-numero">
+                <button onClick={() => handleAddTickets(10)} type="button" className="boton-numero">
                   +10
                 </button>
-                <button onClick={() => handleAddTickets(0)} type="button" className="boton-numero">
+                <button onClick={() => handleAddTickets(20)} type="button" className="boton-numero">
                   +20
                 </button>
                 <button onClick={handleResetTickets} type="button" className="boton-numero">
@@ -210,7 +215,7 @@ function Home() {
               </div>
               <div className="numero_rifas">{tickets}</div>
             </div>
-            <Buttom handleModal={handleModal} tickets={tickets} className="boton-submit" />
+            <Buttom tickets={tickets} className="boton-submit" />
           </form>
           {/*Modal*/}
           <div id="modal" className={`${openModal ? "modal-open" : "modal-hidden"}`}>
