@@ -64,7 +64,12 @@ function Home() {
         buyerPhone: phone,
         quantity: tickets,
       });
-      setData(response.data);
+
+      if(response.status == 200){
+        setOpenModal(!openModal);
+        setData(response.data);
+      }
+      
     } catch (error) {
       console.log(error);
     }
@@ -213,7 +218,7 @@ function Home() {
               </div>
               <div className="numero_rifas">{tickets}</div>
             </div>
-            <Buttom handleModal={handleModal} tickets={tickets} className="boton-submit" />
+            <Buttom tickets={tickets} className="boton-submit" />
           </form>
           {/*Modal*/}
           <div id="modal" className={`${openModal ? "modal-open" : "modal-hidden"}`}>
