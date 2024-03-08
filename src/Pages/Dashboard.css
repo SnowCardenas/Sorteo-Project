@@ -144,8 +144,10 @@ body {
 
 /* ===================== Main ===================== */
 .icon-search-admin {
+    margin-top: 3px;
+    padding-top: 5px;
     cursor: pointer;
-    color: #fff;
+    color: #222;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
   }
@@ -204,17 +206,17 @@ body {
   border: 1px solid var(--black2);
 }
 
-.search label ion-icon {
+.search label .icon {
   position: absolute;
   top: 0;
-  left: 10px;
+  right: 10px;
   font-size: 1.2rem;
 }
 
 .user {
   position: relative;
-  width: 40px;
-  height: 40px;
+  width: 120px;
+  height: 80px;
   border-radius: 50%;
   overflow: hidden;
   cursor: pointer;
@@ -250,6 +252,15 @@ body {
   box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
 }
 
+.cardBox .card h3 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--black2);
+  font-size: 1.1rem;
+  margin-top: 5px;
+}
+
 .cardBox .card .numbers {
   position: relative;
   font-weight: 500;
@@ -268,6 +279,11 @@ body {
   color: var(--black2);
 }
 
+.cardBox .card .search-ticket{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .cardBox .card:hover {
   background: var(--red);
 }

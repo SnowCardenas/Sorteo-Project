@@ -29,7 +29,7 @@ export default function SignIn() {
         setEmail("");
         setPassword("");
         setUser(response.data);
-        navigate("/admin");
+        navigate("/dashboard");
       }
     } catch (error) {
       console.log(error);

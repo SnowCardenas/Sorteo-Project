@@ -1,10 +1,10 @@
-import "./Dashboard.css";
+import "./Dashboard.css"; 
 import { FaSearch } from "react-icons/fa";
 import { FaBell } from "react-icons/fa";
 import { FaRegEye } from "react-icons/fa6";
 import { FaShoppingCart } from "react-icons/fa";
 import { IoTicketOutline } from "react-icons/io5";
-import Avatar from "../assets/avatar.jpg";
+import Avatar from "../assets/AvatarFoto.png";
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../context/userContext";
 import axios from "axios";
@@ -139,12 +139,12 @@ export default function Admin() {
                 <div class="search">
                     <label>
                         <input onChange={onSearchChange} type="text" placeholder="Search Ticket" />
-                        <FaSearch onClick={handleSearch} className="icon-search-admin" size={30} />
+                        <FaSearch onClick={handleSearch} className="icon-search-admin icon" size={30} />
                     </label>
                 </div>
 
                 <div class="user">
-                    <img src="./assets/AvatarFoto.png" alt=""/>
+                    <img src={Avatar} alt=""/>
                 </div>
             </div>
 
@@ -153,12 +153,11 @@ export default function Admin() {
                     <div>
                     {searchResult && (
                 <div key={searchResult._id}>
-                  <h3>{searchResult.ticketNumber}</h3>
-                  <h3>{searchResult.buyerName}</h3>
-                  <h3>{searchResult.buyerEmail}</h3>
-                  <h3>{searchResult.buyerPhone}</h3>
-                  <p>Ticket buscado</p>
-                  <FaRegEye className="icon-admin-card" size={30} />
+                  <h3>Ticket: #{searchResult.ticketNumber}</h3>
+                  <h3>Nombre: {searchResult.buyerName}</h3>
+                  <h3>Correo: {searchResult.buyerEmail}</h3>
+                  <h3>Telefono: {searchResult.buyerPhone}</h3>
+                  <FaRegEye className="icon-admin-card search-ticket" size={30} />
                 </div>
               )}
                     </div>
@@ -169,7 +168,7 @@ export default function Admin() {
                 <div class="card">
                     <div>
                         <div class="numbers">80</div>
-                        <div class="cardName">Sales</div>
+                        <div class="cardName">Ventas</div>
                     </div>
                  <FaShoppingCart className="icon-admin-card" size={30} />
                 </div>
@@ -177,7 +176,7 @@ export default function Admin() {
                 <div class="card">
                     <div>
                         <div class="numbers">920</div>
-                        <div class="cardName">Stock</div>
+                        <div class="cardName">Tickets Disponibles</div>
                     </div>
                     <IoTicketOutline className="icon-admin-card" size={30} />
                 </div>

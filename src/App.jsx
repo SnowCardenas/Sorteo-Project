@@ -1,7 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import Home from "./Pages/Home";
-import Admin from "./Pages/Admin";
 import SignIn from "./Pages/SignIn";
 import Dashboard from "./Pages/Dashboard"
 import axios from "axios";
@@ -15,7 +14,6 @@ function App() {
     <div>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/admin" element={<Admin />} />
         <Route path="/signIn" element={<SignIn />} />
         <Route path="/dashboard" element={<Dashboard />} />
       </Routes>
