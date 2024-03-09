@@ -103,7 +103,7 @@ export default function Admin() {
                 </li>
 
                 <li>
-                    <a href="#">
+                    <a href="#" onClick={createTickets}>
                         <span class="icon">
                             <ion-icon name="settings-outline"></ion-icon>
                         </span>
@@ -112,7 +112,7 @@ export default function Admin() {
                 </li>
 
                 <li>
-                    <a href="#">
+                    <a href="#" onClick={deleteTickets}>
                         <span class="icon">
                             <ion-icon name="settings-outline"></ion-icon>
                         </span>
@@ -167,7 +167,7 @@ export default function Admin() {
 
                 <div class="card">
                     <div>
-                        <div class="numbers">80</div>
+                        <div class="numbers"><h3>{tickets && tickets.ticketSold}</h3></div>
                         <div class="cardName">Ventas</div>
                     </div>
                  <FaShoppingCart className="icon-admin-card" size={30} />
@@ -175,7 +175,7 @@ export default function Admin() {
 
                 <div class="card">
                     <div>
-                        <div class="numbers">920</div>
+                        <div class="numbers"><h3>{tickets && tickets.stock}</h3></div>
                         <div class="cardName">Tickets Disponibles</div>
                     </div>
                     <IoTicketOutline className="icon-admin-card" size={30} />
