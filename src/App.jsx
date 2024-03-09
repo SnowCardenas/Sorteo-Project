@@ -1,12 +1,11 @@
 import { Route, Routes } from "react-router-dom";
-import "./App.css";
 import Home from "./Pages/Home";
 import SignIn from "./Pages/SignIn";
 import Dashboard from "./Pages/Dashboard"
 import axios from "axios";
-import { RxDashboard } from "react-icons/rx";
+import "./App.css";
 
-axios.defaults.baseURL = "http://localhost:3001/api";
+axios.defaults.baseURL = import.meta.env.VITE_API_URL;
 axios.defaults.withCredentials = true;
 
 function App() {

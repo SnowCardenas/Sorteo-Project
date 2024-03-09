@@ -1,14 +1,12 @@
 import "./Dashboard.css"; 
 import { FaSearch } from "react-icons/fa";
-import { FaBell } from "react-icons/fa";
-import { FaRegEye } from "react-icons/fa6";
 import { FaShoppingCart } from "react-icons/fa";
 import { IoTicketOutline } from "react-icons/io5";
 import Avatar from "../assets/AvatarFoto.png";
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../context/userContext";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Page404 } from "../components/Page404";
 
 export default function Admin() {
