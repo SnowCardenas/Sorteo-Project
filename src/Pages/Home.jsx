@@ -235,7 +235,7 @@ function Home() {
                 <ul id="numeros"></ul>
               </main>
               <footer>
-                <button onClick={handleModal} type="button" className="boton" id="cerrar-modal">
+                <button onClick={handleModal} type="button" className="boton cerrar-modal">
                   Cerrar
                 </button>
               </footer>
