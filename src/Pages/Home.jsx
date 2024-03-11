@@ -153,19 +153,7 @@ function Home() {
                 required
               />
             </div>
-            {/*   <div className="form-group">
-              <label htmlFor="apellidos" className="label">
-                Apellidos:
-              </label>
-              <input
-                onChange={onChangeLastName}
-                type="text"
-                id="apellidos"
-                name="apellidos"
-                placeholder="Ingrese su apellido..."
-                required
-              />
-            </div> */}
+            
             <div className="form-group">
               <label htmlFor="telefono" className="label">
                 Número de Teléfono:

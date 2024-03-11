@@ -377,7 +377,7 @@ input {
   text-align: center;
 }
 
-.cerrar-modal {
+.modal .cerrar-modal {
   background-color: #e70009;
   color: #fff;
   font-size: 16px;
