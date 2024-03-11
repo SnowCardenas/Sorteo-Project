@@ -5,7 +5,7 @@ import Dashboard from "./Pages/Dashboard"
 import axios from "axios";
 import "./App.css";
 
-axios.defaults.baseURL = import.meta.env.VITE_API_URL;
+axios.defaults.baseURL = "https://backend-sorteo.onrender.com/api";
 axios.defaults.withCredentials = true;
 
 function App() {

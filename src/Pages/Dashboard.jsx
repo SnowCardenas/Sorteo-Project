@@ -1,5 +1,5 @@
 import "./Dashboard.css"; 
-import { FaSearch } from "react-icons/fa";
+import { FaSearch, FaRegEye } from "react-icons/fa";
 import { FaShoppingCart } from "react-icons/fa";
 import { IoTicketOutline } from "react-icons/io5";
 import Avatar from "../assets/AvatarFoto.png";
