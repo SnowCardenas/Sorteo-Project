@@ -77,8 +77,8 @@ function Home() {
 
   const handleAddTickets = (monto) => {
     let newTickets = tickets + monto;
-    if (newTickets > 1 ) {
-      newTickets = 1;
+    if (newTickets > 2 ) {
+      newTickets = 2;
     }
     setTickets(newTickets);
   };
@@ -213,11 +213,16 @@ function Home() {
             <div className="modal-content">
               <h2>Tus números de la rifa son:</h2>
               <div className="ticket-container">
-                  <p className="ticket-number"> {data.split(".")[0]}</p>
+                  <p className="ticket-number"> {data.split(",")[0]}</p>
                     {imgTicket.map((imagen, index) => (
                     <img key={index} src={imagen.imagen.Ticket} alt={imagen.alt} className="ticket-img"/>
                     ))}
-                  <p> {data.split(".")[1]}</p>
+              </div>
+              <div className="ticket-container">
+                  <p className="ticket-number"> {data.split(",")[1]}</p>
+                    {imgTicket.map((imagen, index) => (
+                    <img key={index} src={imagen.imagen.Ticket} alt={imagen.alt} className="ticket-img"/>
+                    ))}
               </div>
               <main>
                 <ul id="numeros"></ul>

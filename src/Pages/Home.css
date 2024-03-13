@@ -395,6 +395,7 @@ input {
   justify-content: center;
 }
 
+
 .ticket-number {
   color: #e70009;
   text-align: center;
@@ -424,11 +425,11 @@ input {
 
 @media (max-width: 480px) {
   .ticket-img {
-      width: 100%; /* Hacer que la imagen ocupe todo el ancho disponible en dispositivos móviles pequeños */
+      width: 30%; /* Hacer que la imagen ocupe todo el ancho disponible en dispositivos móviles pequeños */
   }
 
   .ticket-number {
-      font-size: 18px !important; /* Reducir aún más el tamaño del número en dispositivos móviles pequeños */
+      font-size: 24px !important; /* Reducir aún más el tamaño del número en dispositivos móviles pequeños */
   }
 }
 
